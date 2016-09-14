@@ -8,7 +8,6 @@ namespace SortingString
         {
             var s = Console.ReadLine();
             var str = s.Split(' ', ',', '.', '\t');
-            
             //Array.Sort(str);
             Sort(str);
             DisplayValues(str);
@@ -18,60 +17,32 @@ namespace SortingString
 
         public static void Sort(string[] str)
         {
-
             for (int i = 0; i < str.Length - 1; i++)
             {
-                char ch = '\0';
-                char ch2 = '\0';
-                for (int j = 0; j < str[i].Length; j++)
+                for (int j = i + 1; j < str.Length; j++)
                 {
-                    ch = str[i][j];
-
-                    for (int k = j; k < str[i].Length - k - 1; k++)
+                    if (IsSortStrings/*String.Compare*/(str[i], str[j]) > 0)
                     {
-                        ch2 = str[i + 1][k];
-                        if (ch > ch2)
-                        {
-                            var tmp = str[i];
-                            str[i] = str[i + 1];
-                            str[i + 1] = tmp;
-
-                        }
+                        var temp = str[i];
+                        str[i] = str[j];
+                        str[j] = temp;
                     }
                 }
-
             }
-
-            //for (int i2 = 0; i2 < str.Length; i2++)
-            //{
-            //    for (int i = i2 + 1; i < str.Length; i++)
-            //    {
-            //        for (int k = 0; k < str[i2].Length; k++)
-            //        {
-            //            char ch = '\0';
-            //            char ch2 = '\0';
-            //            for (int j = k; j < str[i2].Length - 1 + k; j++)
-            //            {
-            //                ch = str[i2][j];
-            //            }
-
-            //            for (int j = k; j < str[i].Length - 1 + k; j++)
-            //            {
-            //                ch2 = str[i][j];
-            //            }
-
-
-            //            if (ch > ch2)
-            //            {
-            //                var tmp = str[i2];
-            //                str[i2] = str[i2 + 1];
-            //                str[i2 + 1] = tmp;
-            //            }
-            //        }
-            //    }
-            
         }
 
+        public static int IsSortStrings(string s1, string s2)
+        {
+            int t = s1.Length > s2.Length ? s2.Length : s1.Length;
+            for (int i = 0; i < t; i++)
+            {
+                if (s1[i] < s2[i]) return -1;
+                if (s1[i] > s2[i]) return 1;
+                if (s1[i] == s2[i] && s1.Length > s2.Length) return 1;
+            }
+            return -1;
+        }
+        
         public static void DisplayValues(string[] str)
         {
             for (int i = 0; i < str.Length; i++)
