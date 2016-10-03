@@ -4,6 +4,9 @@ namespace SortingString
 {
     class Program
     {
+        /// <summary>
+        /// Алгоритм сортировки (пузырьком).
+        /// </summary>
         static void Main(string[] args)
         {
             var s = Console.ReadLine();
@@ -38,9 +41,9 @@ namespace SortingString
             {
                 if (s1[i] < s2[i]) return -1;
                 if (s1[i] > s2[i]) return 1;
-                if (s1[i] == s2[i] && s1.Length > s2.Length) return 1;
+                
             }
-            return -1;
+            return s1.Length > s2.Length? 1:-1;
         }
         
         public static void DisplayValues(string[] str)
